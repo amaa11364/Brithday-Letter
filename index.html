@@ -552,7 +552,7 @@
             50% { transform: translateY(-5px); }
         }
 
-        /* SPECIAL SURPRISE SECTION */
+        /* SPECIAL SURPRISE SECTION - DIPERBAIKI */
         .interactive-section {
             text-align: center;
             padding: 80px 20px;
@@ -565,7 +565,8 @@
 
         .card-container {
             perspective: 1200px;
-            width: 350px;
+            width: 100%;
+            max-width: 350px;
             height: 450px;
             margin: 0 auto 50px;
         }
@@ -593,9 +594,13 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 50px 35px;
+            padding: 30px 25px;
             box-shadow: 0 25px 60px rgba(30, 136, 229, 0.25);
             border: 3px solid var(--white);
+            overflow: hidden;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            box-sizing: border-box;
         }
 
         .card-front {
@@ -608,27 +613,60 @@
         }
 
         .card-icon {
-            font-size: 5.5rem;
+            font-size: 4.5rem;
             color: var(--white);
-            margin-bottom: 35px;
+            margin-bottom: 25px;
             filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.2));
         }
 
         .card-text {
             font-family: 'Quicksand', sans-serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--white);
             text-align: center;
             font-weight: 600;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            width: 100%;
+            padding: 0 10px;
         }
 
         .card-subtext {
             color: rgba(255, 255, 255, 0.95);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-            line-height: 1.6;
+            line-height: 1.5;
+            width: 100%;
+            padding: 0 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
+        }
+
+        /* Menambahkan scroll jika teks terlalu panjang */
+        .card-back .card-subtext {
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 5px;
+            -webkit-line-clamp: unset;
+            display: block;
+        }
+
+        .card-back .card-subtext::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .card-back .card-subtext::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .card-back .card-subtext::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
         }
 
         .reveal-button {
@@ -644,6 +682,7 @@
             font-weight: 600;
             box-shadow: 0 10px 30px rgba(66, 165, 245, 0.5);
             border: 3px solid var(--white);
+            margin-top: 20px;
         }
 
         .reveal-button:hover {
@@ -736,10 +775,29 @@
             50% { transform: scale(1.2); }
         }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE IMPROVEMENTS */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 95%;
+            }
+        }
+
         @media (max-width: 992px) {
             .journal-container {
                 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .card-container {
+                max-width: 320px;
+                height: 420px;
+            }
+            
+            .card-text {
+                font-size: 1.6rem;
+            }
+            
+            .card-subtext {
+                font-size: 1rem;
             }
         }
 
@@ -754,6 +812,7 @@
             
             .journal-container {
                 grid-template-columns: 1fr;
+                gap: 25px;
             }
             
             .message-card, .apology-card {
@@ -761,16 +820,32 @@
             }
             
             .card-container {
-                width: 300px;
+                max-width: 300px;
                 height: 400px;
             }
             
+            .card-front, .card-back {
+                padding: 25px 20px;
+            }
+            
+            .card-icon {
+                font-size: 4rem;
+                margin-bottom: 20px;
+            }
+            
             .card-text {
-                font-size: 1.7rem;
+                font-size: 1.5rem;
+                margin-bottom: 12px;
             }
             
             .card-subtext {
-                font-size: 1.1rem;
+                font-size: 0.95rem;
+                line-height: 1.4;
+            }
+            
+            .reveal-button {
+                padding: 15px 35px;
+                font-size: 1.2rem;
             }
             
             .message-wrapper {
@@ -783,23 +858,54 @@
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 576px) {
             .birthday-title {
                 font-size: 2rem;
+                line-height: 1.2;
+            }
+            
+            .birthday-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .date-badge {
+                padding: 8px 20px;
+                font-size: 1rem;
             }
             
             .section-title {
                 font-size: 1.7rem;
+                margin-bottom: 30px;
             }
             
             .card-container {
-                width: 280px;
+                max-width: 280px;
                 height: 380px;
             }
             
+            .card-front, .card-back {
+                padding: 20px 15px;
+                border-radius: 20px;
+            }
+            
+            .card-icon {
+                font-size: 3.5rem;
+                margin-bottom: 15px;
+            }
+            
+            .card-text {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+            }
+            
+            .card-subtext {
+                font-size: 0.9rem;
+                line-height: 1.3;
+            }
+            
             .reveal-button {
-                padding: 15px 35px;
-                font-size: 1.2rem;
+                padding: 12px 30px;
+                font-size: 1.1rem;
             }
             
             .message-wrapper {
@@ -809,6 +915,63 @@
             
             .special-message-content {
                 font-size: 1rem;
+                line-height: 1.6;
+            }
+            
+            .wish-content {
+                padding: 20px;
+                margin: 0 15px;
+            }
+            
+            .wish-text {
+                font-size: 2.2rem;
+            }
+            
+            .music-box {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .card-container {
+                max-width: 260px;
+                height: 360px;
+            }
+            
+            .card-text {
+                font-size: 1.2rem;
+            }
+            
+            .card-subtext {
+                font-size: 0.85rem;
+            }
+            
+            .reveal-button {
+                padding: 10px 25px;
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        /* Fix untuk image responsif */
+        .journal-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        @media (max-width: 768px) {
+            .journal-image {
+                height: 180px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .journal-image {
+                height: 160px;
             }
         }
     </style>
@@ -825,7 +988,7 @@
                 <div class="flame"></div>
             </div>
             <h1 class="wish-text">Make a Wish!</h1>
-            <p class="wish-instruction">Tiup lilin dan buka kejutan spesial untukmu...</p>
+            <p class="wish-instruction">Blow the candle and open your little surprise… don’t worry, it’s safe. Probably.</p>
             <button class="wish-button" id="blowCandle">Tiup Lilin</button>
         </div>
     </div>
@@ -874,8 +1037,7 @@
             <h1 class="birthday-title">Selamat Ulang Tahun!</h1>
             <p class="birthday-subtitle">Menyambut usia ke-18 dengan penuh harap dan bahagia</p>
             <div class="date-badge">7 Desember - it's your special day</div>
-           
-            <h1 class="birthday-subtitle">pelan pelan ya bacanya - Happy Reading</h1>
+            <p class="birthday-subtitle" style="margin-top: 20px;">pelan pelan ya bacanya - Happy Reading</p>
         </div>
     </header>
 
@@ -893,7 +1055,7 @@
             <h2 class="section-title">Our Photo Journal</h2>
             <div class="journal-container">
                 <div class="journal-page">
-                    <img src="IMG_20230801_102231.jpg" alt="Memory 1" class="journal-image">
+                    <img src="IMG_20230801_102231.jpg" alt="Memory 1" class="journal-image" onerror="this.src='https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80'">
                     <div class="journal-content">
                         <div class="journal-date">Agustus 2023</div>
                         <h3 class="journal-title">First time liat Desya</h3>
@@ -903,7 +1065,7 @@ Eh tapi abis satu momen itu… hati aku bilang: "loh kok jadi suka?", hehe mian 
                 </div>
                 
                 <div class="journal-page">
-                    <img src="WhatsApp Image 2025-12-07 at 06.59.26.jpeg" alt="Memory 2" class="journal-image">
+                    <img src="WhatsApp Image 2025-12-07 at 06.59.26.jpeg" alt="Memory 2" class="journal-image" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80'">
                     <div class="journal-content">
                         <div class="journal-date">Mei 2025</div>
                         <h3 class="journal-title">Naik gunung</h3>
@@ -912,7 +1074,7 @@ Eh tapi abis satu momen itu… hati aku bilang: "loh kok jadi suka?", hehe mian 
                 </div>
                 
                 <div class="journal-page">
-                    <img src="WhatsApp Image 2025-12-07 at 07.00.18.jpeg" alt="Memory 3" class="journal-image">
+                    <img src="WhatsApp Image 2025-12-07 at 07.00.18.jpeg" alt="Memory 3" class="journal-image" onerror="this.src='https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?ixlib=rb-4.0.3&auto=format&fit=crop&w=860&q=80'">
                     <div class="journal-content">
                         <div class="journal-date">November 2025</div>
                         <h3 class="journal-title">First Date?</h3>
@@ -935,7 +1097,7 @@ Eh tapi abis satu momen itu… hati aku bilang: "loh kok jadi suka?", hehe mian 
             </div>
         </section>
 
-        <!-- SPECIAL SURPRISE -->
+        <!-- SPECIAL SURPRISE - DIPERBAIKI -->
         <section class="interactive-section" id="interactive">
             <h2 class="section-title">Special Surprise</h2>
             <div class="card-container">
@@ -963,8 +1125,8 @@ Eh tapi abis satu momen itu… hati aku bilang: "loh kok jadi suka?", hehe mian 
         <section id="apology">
             <div class="apology-card">
                 <h3 class="apology-title">Maaf ya cuma bisa ngasih ini...</h3>
-                <p class="apology-text">Aku tahu ini cuma website sederhana, tapi aku harap ini bisa bikin kamu seneng di hari spesialmu. Aku berusaha buat sesuatu yang spesial buat kamu, meskipun cuma digital. Yang penting, niat dan perasaannya nyata! <span class="heart-emoji">💙</span></p>
-                <p class="apology-text">Semoga caca suka kejutan kecil ini dan happy our day!</p>
+                <p class="apology-text">Aku tahu ini cuma website sederhana, tapi semoga tetep bisa bikin kamu senang di hari spesialmu. Aku cuma pengen ngasih sesuatu yang beda buat kamu, meskipun bentuknya digital!</p>
+                <p class="apology-text">Semoga caca suka hadiah kecil ini dan happy our day!</p>
             </div>
         </section>
     </main>
@@ -997,15 +1159,16 @@ Eh tapi abis satu momen itu… hati aku bilang: "loh kok jadi suka?", hehe mian 
         const backgroundMusic = document.getElementById('backgroundMusic');
         
         // Birthday message text
-        const message = `Selamat ulang tahun yang ke-18. Terima kasih sudah bertahan sejauh ini, dan terima kasih juga karena kehadiranmu selalu jadi hal manis yang dunia titipkan untukku.
+        const message = `Terima kasih sudah bertahan sejauh ini.
+Selamat atas bertambahnya usia dan berkurangnya waktu di dunia. Kamu adalah seseorang yang kehadirannya benar-benar dinantikan, yang tumbuh jadi manusia kuat dan tangguh menghadapi apa pun.
 
-Di usiamu yang bertambah, aku cuma ingin kamu tahu: kamu adalah seseorang yang aku banggakan. Seseorang yang tumbuh jadi pribadi kuat, sabar, dan lembut, meski hidup tak selalu mudah.
+Di antara sedih, sempit, dan segala hal yang pernah menghampiri, semoga kamu selalu nemu alasan-alasan kecil yang bikin kamu lanjut jalan dan tetap ngejar mimpi baikmu.
 
-Aku bersyukur pernah melihatmu bertahan, tersenyum, dan tetap percaya pada mimpimu. Semoga di antara sedih dan sempit yang kadang datang tanpa diundang, kamu selalu menemukan alasan kecil untuk bahagia—entah dari hal sederhana, dari dirimu sendiri, atau diam-diam… dariku yang selalu ingin kamu baik-baik saja.
+Segala lelah dan sakit yang pernah kamu hadapi, semoga itu semua bikin kamu makin sayang dan berterima kasih pada dirimu sendiri—yang hebat, walau kadang kamu lupa.
 
-Terima kasih sudah menjadi kamu. Terima kasih sudah kuat sejauh ini. Dan semoga kamu selalu mencintai dirimu seperti aku menghargai setiap bagian dari dirimu.
+Kedepannya kamu nggak akan pernah tahu apa yang nunggu. Tapi semoga kamu selalu punya ruang ikhlas, hati yang lapang, dan rasa syukur yang nyamannya nggak habis-habis.
 
-Selamat ulang tahun, kamu yang manis. Semoga dipertemukan dengan versi terbaik dari mimpi dan masa depanmu.`;
+Kalau hidup pernah kasih kamu banyak luka, semoga tahun-tahun berikutnya luka itu pelan-pelan luruh… dan diganti sama bahagia yang datangnya berkali-kali lipat.`;
         
         // Special message text
         const specialMessage = `Halo Desya…
@@ -1190,7 +1353,7 @@ Makasih ya… udah ada di hidup aku beberapa waktu ini. your my favorite person.
             interactiveCard.classList.toggle('flipped');
             
             // Play flip sound
-            const flipSound = new Audio('');
+            const flipSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-card-flip-1998.mp3');
             flipSound.volume = 0.3;
             flipSound.play();
             
@@ -1204,7 +1367,7 @@ Makasih ya… udah ada di hidup aku beberapa waktu ini. your my favorite person.
             interactiveCard.classList.toggle('flipped');
             
             // Play flip sound
-            const flipSound = new Audio('');
+            const flipSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-card-flip-1998.mp3');
             flipSound.volume = 0.3;
             flipSound.play();
             
@@ -1224,12 +1387,12 @@ Makasih ya… udah ada di hidup aku beberapa waktu ini. your my favorite person.
         
         // Create confetti burst effect
         function createConfettiBurst() {
-            const confettiCount = 40;
+            const confettiCount = 30; // Kurangi jumlah untuk performa lebih baik
             
             for (let i = 0; i < confettiCount; i++) {
                 setTimeout(() => {
                     createConfettiPiece();
-                }, i * 20);
+                }, i * 30);
             }
             
             // Play celebration sound
@@ -1242,8 +1405,8 @@ Makasih ya… udah ada di hidup aku beberapa waktu ini. your my favorite person.
         function createConfettiPiece() {
             const confetti = document.createElement('div');
             confetti.style.position = 'fixed';
-            confetti.style.width = Math.random() * 12 + 8 + 'px';
-            confetti.style.height = Math.random() * 12 + 8 + 'px';
+            confetti.style.width = Math.random() * 10 + 6 + 'px';
+            confetti.style.height = Math.random() * 10 + 6 + 'px';
             confetti.style.backgroundColor = getRandomBlueColor();
             confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
             confetti.style.zIndex = '1000';
@@ -1261,13 +1424,13 @@ Makasih ya… udah ada di hidup aku beberapa waktu ini. your my favorite person.
             
             // Random animation
             const angle = Math.random() * Math.PI * 2;
-            const velocity = 100 + Math.random() * 150;
+            const velocity = 80 + Math.random() * 120;
             const rotation = Math.random() * 720 - 360;
             
             gsap.to(confetti, {
-                duration: Math.random() * 2 + 1,
+                duration: Math.random() * 1.5 + 1,
                 x: Math.cos(angle) * velocity,
-                y: Math.sin(angle) * velocity + 100,
+                y: Math.sin(angle) * velocity + 80,
                 rotation: rotation,
                 opacity: 0,
                 ease: "power2.out",
@@ -1287,27 +1450,25 @@ Makasih ya… udah ada di hidup aku beberapa waktu ini. your my favorite person.
         // Add continuous subtle animation to card in special surprise section
         gsap.to('.card-front', {
             duration: 3,
-            y: -10,
+            y: -8,
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut"
         });
         
-        // Smooth scroll to sections when clicked
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
+        // Handle responsive adjustments on window resize
+        window.addEventListener('resize', () => {
+            // Force reflow untuk memperbaiki layout
+            document.body.style.display = 'none';
+            document.body.offsetHeight; // Trigger reflow
+            document.body.style.display = '';
+        });
+        
+        // Handle image errors
+        document.querySelectorAll('.journal-image').forEach(img => {
+            img.onerror = function() {
+                console.log('Image failed to load, using fallback');
+            };
         });
     </script>
 </body>
